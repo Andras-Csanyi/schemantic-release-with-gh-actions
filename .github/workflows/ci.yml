@@ -3,9 +3,6 @@ run-name: CI build
 
 on:
   pull_request:
-    types:
-      - opened
-  push:
     branches:
       - main
         
