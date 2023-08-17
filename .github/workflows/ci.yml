@@ -1,0 +1,33 @@
+name: CI build
+run-name: CI build
+
+on:
+  pull_request:
+    types:
+      - opened
+  push:
+    branches:
+      - main
+        
+jobs:
+  build:
+    name: Building
+    
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        dotnet-version: ['7.0.x']
+        
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build dotnet with $ {{ matrix.dotnet-version }} version
+        uses: actions/setup-dotnet@v3
+        with: 
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Restore
+        run: dotnet-restore
+      - name: Build
+        run: dotnet build --Configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+        
