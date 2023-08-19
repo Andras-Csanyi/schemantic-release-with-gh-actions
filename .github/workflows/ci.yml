@@ -16,7 +16,7 @@ jobs:
     
     steps:
       - run: |
-          echo "github ref: " ${{ env.GITHUB_REF }}
+          echo "github ref: " ${{ vars.GITHUB_REF }}
           echo "dotnet version: " ${{ vars.DOTNET_VERSION }}
           echo "event name: " ${{ github.event_name }}
   
