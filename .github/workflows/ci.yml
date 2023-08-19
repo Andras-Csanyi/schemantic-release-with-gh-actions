@@ -31,9 +31,7 @@ jobs:
       - name: Setting up dotnet with ${{ vars.DOTNET_VERSION }} version
         uses: actions/setup-dotnet@v3
         with: 
-          dotnet-version: $DOTNET_VERSION
-        env:
-          DOTNET_VERSION: ${{ vars.DOTNET_VERSION }}
+          dotnet-version: ${{ vars.DOTNET_VERSION }}
           
       - name: Restore
         run: dotnet restore
