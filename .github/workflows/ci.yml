@@ -17,6 +17,7 @@ jobs:
     steps:
       - run: |
           echo "github ref: " ${{ env.GITHUB_REF }}
+          echo "dotnet version: " ${{ vars.DOTNET_VERSION }}
           echo "event name: " ${{ github.event_name }}
   
   feature_branch:
@@ -26,14 +27,20 @@ jobs:
         
     steps:
       - uses: actions/checkout@v3
-      - name: Build dotnet with $ {{ vars.DOTNET_VERSION }} version
+      
+      - name: Setting up dotnet with ${{ vars.DOTNET_VERSION }} version
         uses: actions/setup-dotnet@v3
         with: 
-          dotnet-version: ${{ vars.DOTNET_VERSION }}
+          dotnet-version: $DOTNET_VERSION
+        env:
+          DOTNET_VERSION: ${{ vars.DOTNET_VERSION }}
+          
       - name: Restore
         run: dotnet restore
+        
       - name: Build
         run: dotnet build --configuration Release --no-restore
+        
       - name: Test
         run: dotnet test --no-restore --verbosity normal
         
