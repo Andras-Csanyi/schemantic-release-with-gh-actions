@@ -1,6 +1,6 @@
 {
   "debug": true,
-  "tagFormat": "v${version}",
+  "tagFormat": "${version}",
   "branches": ["main"],
   "plugins": [
     "@semantic-release/commit-analyzer",
