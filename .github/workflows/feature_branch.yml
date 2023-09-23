@@ -19,7 +19,7 @@ jobs:
           echo "event name: " ${{ github.event_name }}
           echo "=== DEBUG END ==="
           
-  every_time:
+  feature_branch:
     name: Every time
     runs-on: ubuntu-latest
     
@@ -39,23 +39,3 @@ jobs:
 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
-  
-  feature_branch:
-    name: Feature branch
-    if: ${{ github.event_name == 'pull_request' }}
-    runs-on: ubuntu-latest
-        
-    steps:
-      - name: feature branch steps
-        run: |
-          echo "Feature branc steps"
-      
-  main_branch:
-    name: Main branch
-    if: ${{ github.event_name == 'push' }}  
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "Only for main branch"
-      - run: |
-          echo "DOTNET_VERSION: " ${{ vars.DOTNET_VERSION }}
