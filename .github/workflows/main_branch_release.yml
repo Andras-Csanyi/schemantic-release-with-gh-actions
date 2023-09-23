@@ -25,6 +25,10 @@ jobs:
   release_branch_build:
     name: Release Branch Build
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+      issues: write
+      pull-requests: write
     
     steps:
       - uses: actions/checkout@v3
@@ -42,3 +46,33 @@ jobs:
 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+        
+      - name: Install Semantic-Release dependencies
+        run: |
+          npm install npm
+          npm install semantic-release
+          npm install @semantic-release/changelog
+          npm install @semantic-release/exec
+          npm install @semantic-release/git
+          npm install @semantic-release/github
+          
+      - name: setup Python
+        uses: action/setup-python@v4
+        with: 
+          cache: 'pip'
+      
+      - name: Ensure python tools
+        run: |
+          pip3 --version
+          pip3 install --user bump2version
+          
+      - name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release
