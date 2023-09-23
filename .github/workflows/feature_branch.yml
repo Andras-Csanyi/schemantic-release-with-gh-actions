@@ -1,5 +1,5 @@
-name: CI build
-run-name: CI build
+name: Feature Branch Build
+run-name: Feature Branch Build
 
 on:
   pull_request:
@@ -13,6 +13,7 @@ jobs:
     steps:
       - run: |
           echo "=== DEBUG ==="
+          echo "Feature branch build"
           echo "github ref: " ${{ vars.GITHUB_REF }}
           echo "github ref: " ${{ env.GITHUB_REF }}
           echo "dotnet version: " ${{ vars.DOTNET_VERSION }}
@@ -20,7 +21,7 @@ jobs:
           echo "=== DEBUG END ==="
           
   feature_branch:
-    name: Every time
+    name: Feature Branch Build
     runs-on: ubuntu-latest
     
     steps:
