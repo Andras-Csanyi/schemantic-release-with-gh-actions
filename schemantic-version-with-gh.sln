@@ -4,18 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{84B3EC16-151E-43D6-BC17-57310C6645F3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0F5D51E0-9F6F-4179-8B04-B3E1E6864C5A}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{12F9915F-9BE0-43A2-AA5B-874FEC00DD42}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{215F4697-1101-4E65-A7EF-66CA1677E263}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\ci.yml = .github\workflows\ci.yml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,7 +20,5 @@ Global
 		{84B3EC16-151E-43D6-BC17-57310C6645F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{12F9915F-9BE0-43A2-AA5B-874FEC00DD42} = {0F5D51E0-9F6F-4179-8B04-B3E1E6864C5A}
-		{215F4697-1101-4E65-A7EF-66CA1677E263} = {12F9915F-9BE0-43A2-AA5B-874FEC00DD42}
 	EndGlobalSection
 EndGlobal

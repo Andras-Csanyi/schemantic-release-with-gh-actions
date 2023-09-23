@@ -1,0 +1,64 @@
+name: CI build
+run-name: CI build
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "=== DEBUG ==="
+          echo "github ref: " ${{ vars.GITHUB_REF }}
+          echo "github ref: " ${{ env.GITHUB_REF }}
+          echo "dotnet version: " ${{ vars.DOTNET_VERSION }}
+          echo "event name: " ${{ github.event_name }}
+          echo "=== DEBUG END ==="
+          
+  every_time:
+    name: Every time
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setting up dotnet with ${{ vars.DOTNET_VERSION }} version
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ vars.DOTNET_VERSION }}
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+  
+  feature_branch:
+    name: Feature branch
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+        
+    steps:
+      - name: feature branch steps
+        run: |
+          echo "Feature branc steps"
+      
+  main_branch:
+    name: Main branch
+    if: ${{ github.event_name == 'push' }}  
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Only for main branch"
+      - run: |
+          echo "DOTNET_VERSION: " ${{ vars.DOTNET_VERSION }}
