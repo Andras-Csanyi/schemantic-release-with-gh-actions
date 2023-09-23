@@ -1,5 +1,5 @@
-name: Feature branch build
-run-name: Feature branch build
+name: Release Branch Build
+run-name: Release Branch Build
 
 on:
   push:
@@ -22,8 +22,8 @@ jobs:
           echo "event name: " ${{ github.event_name }}
           echo "=== DEBUG END ==="
           
-  main_branch_build:
-    name: Main branch build
+  release_branch_build:
+    name: Release Branch Build
     runs-on: ubuntu-latest
     
     steps:
